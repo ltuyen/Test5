@@ -1,31 +1,35 @@
 package com.company;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.Dimension;
-import java.util.concurrent.TimeUnit;
-public class Main {
 
+import java.util.concurrent.TimeUnit;
+
+public class Delivery {
     public static void main(String[] args) throws InterruptedException {
 
 
-        /* Pickup ordering */
+        /* Delivery ordering */
 
         //Open browser
         System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
         ChromeDriver driver = new ChromeDriver();
-        driver.manage().window().setSize(new Dimension(1704,950));
+        driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get("http://tuyen.online.sit.getzpass.com");
         Thread.sleep(2000);
 
-        // Select pickup service
-        driver.findElementByXPath("//div[@id='btnPickup']/div[2]/img").click();
-        Thread.sleep(3000);
-        driver.findElement(By.id("btn-map-29")).click();
+        // Select delivery service
+        driver.findElementByXPath("//div[@id='btnDelivery']/div[2]/img").click();
+        Thread.sleep(2000);
+        driver.findElement(By.id("postalCodeAutocomplete")).click();
+        driver.findElement(By.id("postalCodeAutocomplete")).sendKeys("318990");
+        driver.findElement(By.id("btnAddPostalCode")).click();
 
-        //Add item to my cart
+        // Add item to my cart
         driver.findElement(By.id("addToCart-9ea89546-ba04-4c56-97c2-f58da8025340")).click();
+        Thread.sleep(2000);
 
         // This  will scroll down the page by 500 pixel vertical
         Object o = ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
@@ -41,7 +45,11 @@ public class Main {
         driver.findElement(By.id("member_email")).sendKeys("tuyensdc@gmail.com");
         driver.findElement(By.id("member_phone")).click();
         driver.findElement(By.id("member_phone")).sendKeys("92345678");
-        driver.findElement(By.id("check_paymentS")).click();
+        driver.findElement(By.id("member_address")).click();
+        driver.findElement(By.id("member_address")).sendKeys("1");
+        driver.findElement(By.id("member_address2")).click();
+        driver.findElement(By.id("member_address2")).sendKeys("1");
+        driver.findElement(By.id("check_payment")).click();
         Thread.sleep(2000);
 
         //Login GetzPay account and payment
@@ -55,7 +63,7 @@ public class Main {
         Thread.sleep(2000);
         driver.findElement(By.id("SecurityCode")).click();
         driver.findElement(By.id("SecurityCode")).sendKeys("123");
-        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,250)");
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,200)");
         Thread.sleep(2000);
         driver.findElement(By.id("TempAgreeTC")).click();
         driver.findElement(By.id("btnSubmit")).click();
@@ -65,8 +73,7 @@ public class Main {
         driver.quit();
     }
 
-    private static void assertEquals(String text, String track_your_order_status) {
+    private static void assertEquals(String text, String track_your_order_status ) {
 
     }
-
 }
