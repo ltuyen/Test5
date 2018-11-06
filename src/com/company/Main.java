@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
 
 
-        // write your code here
+        /* Pickup ordering */
         System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
         ChromeDriver driver = new ChromeDriver();
         driver.manage().window().setSize(new Dimension(1704,916));
