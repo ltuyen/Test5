@@ -16,7 +16,6 @@ public class DeletePromotion {
         driver.get("http://sit-merchant.getzpass.com/Account/Login");
         Thread.sleep(1000);
 
-        // Select dine-in service
         driver.findElement(By.id("UserName")).click();
         driver.findElement(By.id("UserName")).sendKeys("tuyensdc@gmail.com");
         driver.findElement(By.id("Password")).click();
